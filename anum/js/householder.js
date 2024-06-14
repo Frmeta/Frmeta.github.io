@@ -176,7 +176,6 @@ function householder(){
     v = [x[0] + tambahan, x[1]]
 
     // Draw second arrow (x to v)
-    context.lineWidth = 1;
     context.strokeStyle = '#009999';
     centerGrid.drawArrow(x[0], x[1], v[0], v[1]);
 
