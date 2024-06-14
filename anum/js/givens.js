@@ -55,20 +55,6 @@ function givens(){
     context.strokeStyle = '#ff0000';
     centerGrid.drawArrow(0, 0, Jp[0], Jp[1]);
 
-    // draw line
-    context.lineWidth = 1;
-    context.beginPath();
-    context.moveTo(p[0], p[1]);
-    context.lineTo(Jp[0], Jp[1]);
-    context.stroke();
-
-    // draw circle
-    context.strokeStyle = '#000000';
-    context.beginPath();
-    context.arc(0, 0, 10, 0, 2*Math.PI);
-    context.stroke();
-
-
     // Draw arc from vector p to Jp
     context.fillStyle = '#98A538';
     centerGrid.drawArc(0, 0, 20, 0, theta, true);
