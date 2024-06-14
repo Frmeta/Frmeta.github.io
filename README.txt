@@ -28,3 +28,8 @@ Credits:
 	Other:
 		jQuery (jquery.com)
 		Responsive Tools (github.com/ajlkn/responsive-tools)
+
+
+Ref:
+https://dev.to/nyxtom/drawing-interactive-graphs-with-canvas-and-javascript-o1j
+https://vivekseth.com/parametric-drawing-canvas/
