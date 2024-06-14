@@ -1,17 +1,17 @@
-h1, h3, canvas, figcaption {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
+
 body {
-    background-color: #0A0A0A;
+    background-color: #0a0a0a;
     color: #ffffff;
 
     font-family: "Sofia Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 10;
     font-style: normal;
+
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1, h3 {
