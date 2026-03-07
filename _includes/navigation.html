@@ -1,0 +1,28 @@
+
+
+<nav>
+  <!-- Name -->
+  <a href="/" class="site-title">
+      Fredo Melvern Tanzil
+  </a>
+
+  <!-- Navigation Content -->
+  <div style="
+    display: flex;
+    gap: 20px;
+  ">
+    {% for item in site.data.navigation %}
+
+      <a href="{{ item.link }}"
+      {% if page.url == item.link %}
+        class="current"
+      {% endif %}
+      style="
+        /* text-decoration: none; */
+      ">
+        {{ item.name }}
+      </a>
+
+    {% endfor %}
+  </div>
+</nav>

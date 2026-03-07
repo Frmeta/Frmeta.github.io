@@ -1,0 +1,31 @@
+---
+layout: default
+title: About
+---
+
+
+<div>
+    <div class="fancy-header">
+        <h3>Projects</h3>
+    </div>
+    <div class="histories">
+        {% assign sorted_projects = site.projects | sort: "date" | reverse %}
+        {% for project in sorted_projects %}
+            <a href="{{ project.url }}" class="gray-when-hover">
+                <div class="history">
+                    <div class="date-range">
+                        <p>{{ project.date | date: "%b %Y" }}</p>
+                    </div>
+                    <div class="project-img-container-small">
+                        <img class="image-cover" src="/assets/img/{{ project.image }}" alt="{{ project.title }} thumbnail">
+                    </div>
+                    <div class="event">
+                        <p class="event-title">{{ project.title }}</p>
+
+                        <p>{{ project.description }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>

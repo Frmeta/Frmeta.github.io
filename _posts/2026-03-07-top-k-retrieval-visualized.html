@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAND Execution Visualizer</title>
+    <style>
+        :root {
+            --bg-color: rgb(29, 36, 42);
+            --panel-bg: #36376f;
+            --text-main: #e2e5e7;
+            --text-muted: #c9cdd3;
+            --border-color: #000000;
+            --primary: #c7961b;
+            --primary-hover: #f57906;
+            --pointer-color: #ffffff;
+            --row-height: 90px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Header & Navigation */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--panel-bg);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .step-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-counter {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .step-action {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 5px;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-weight: bold;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: var(--primary-hover);
+        }
+
+        button:disabled {
+            background-color: #cbd5e1;
+            cursor: not-allowed;
+        }
+
+        /* Main Dashboard Layout */
+        .dashboard {
+            display: flex;
+            flex: 1;
+            gap: 20px;
+            overflow: hidden;
+        }
+
+        /* Sidebar: Stats & Top-K */
+        .sidebar {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .panel {
+            background-color: var(--panel-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .panel h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .top-k-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .top-k-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background-color: var(--panel-bg);
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* Main Area: Inverted Index */
+        .main-area {
+            flex: 1;
+            background-color: var(--panel-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .index-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Term Rows & Animations */
+        .term-row {
+            position: absolute; /* Crucial for vertical sorting animation */
+            left: 0;
+            width: 100%;
+            height: var(--row-height);
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            transition: top 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth Vertical Move */
+        }
+
+        .term-header {
+            width: 150px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .term-name {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .term-bound {
+            font-size: 0.85em;
+            color: var(--text-muted);
+        }
+
+        .postings-list {
+            display: flex;
+            position: relative; /* For pointer absolute positioning */
+            padding: 10px 0;
+        }
+
+        .posting-card {
+            width: 60px;
+            height: 50px;
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-right: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .p-doc {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .p-score {
+            font-size: 0.8em;
+            color: var(--text-muted);
+        }
+
+        /* The Animated Pointer */
+        .pointer-box {
+            position: absolute;
+            width: 64px;
+            height: 54px;
+            border: 3px solid var(--pointer-color);
+            border-radius: 8px;
+            top: 6px; 
+            left: 0;
+            z-index: 2;
+            pointer-events: none; /* Let clicks pass through */
+            transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth Horizontal Move */
+            box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+        }
+
+        .pointer-box::after {
+            content: '▼';
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--pointer-color);
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="step-info">
+            <div class="step-counter">Step <span id="current-step-display">1</span> of <span id="total-steps-display"></span></div>
+            <div class="step-action" id="step-action-desc">INITIALIZE</div>
+        </div>
+        <div class="nav-controls">
+            <span style="font-size: 0.9em; color: #bec4cd; margin-right: 10px;">(Use ←/→ keys)</span>
+            <button id="btn-prev" onclick="prevStep()">Previous</button>
+            <button id="btn-next" onclick="nextStep()">Next</button>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="panel">
+                <h3>Global Variables</h3>
+                <div class="stat-row">
+                    <span>Threshold:</span>
+                    <span class="stat-value" id="val-threshold">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Pivot ID:</span>
+                    <span class="stat-value" id="val-pivot">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Current Doc:</span>
+                    <span class="stat-value" id="val-curdoc">0</span>
+                </div>
+            </div>
+
+            <div class="panel" style="flex: 1;">
+                <h3>Top-K Results</h3>
+                <ul class="top-k-list" id="top-k-list">
+                    </ul>
+            </div>
+        </div>
+
+        <div class="main-area">
+            <h3>Inverted Index</h3>
+            <div class="index-container" id="index-container">
+                </div>
+        </div>
+    </div>
+    <script src="/assets/js/steps_history.js"></script>
+    <script>
+        // The embedded JSON data provided by the user
+        
+        let currentStepIndex = 0;
+        const ROW_HEIGHT = 90; // matches CSS
+        const POSTING_WIDTH = 75; // 60px width + 15px margin
+
+        document.getElementById('total-steps-display').innerText = stepsHistory.length;
+
+        // Initialize DOM Elements
+        function initializeDOM() {
+            const container = document.getElementById('index-container');
+            const initialData = stepsHistory[0].inverted_index;
+            
+            // Generate DOM elements for each unique term once
+            initialData.forEach((termData) => {
+                const row = document.createElement('div');
+                row.className = 'term-row';
+                row.id = `term-row-${termData.term}`;
+                
+                // Header block for the term
+                const header = document.createElement('div');
+                header.className = 'term-header';
+                header.innerHTML = `
+                    <span class="term-name">${termData.term.toUpperCase()}</span>
+                    <span class="term-bound">UB: ${termData.upper_bound}</span>
+                `;
+                
+                // Postings list block
+                const postingsList = document.createElement('div');
+                postingsList.className = 'postings-list';
+                postingsList.id = `postings-${termData.term}`;
+                
+                // Render the static posting cards
+                termData.postings.forEach(posting => {
+                    const card = document.createElement('div');
+                    card.className = 'posting-card';
+                    card.innerHTML = `
+                        <span class="p-doc">D${posting[0]}</span>
+                        <span class="p-score">${posting[1]}</span>
+                    `;
+                    postingsList.appendChild(card);
+                });
+
+                // The pointer animated box
+                const pointer = document.createElement('div');
+                pointer.className = 'pointer-box';
+                pointer.id = `pointer-${termData.term}`;
+
+                postingsList.appendChild(pointer);
+                row.appendChild(header);
+                row.appendChild(postingsList);
+                container.appendChild(row);
+            });
+            
+            renderStep(0);
+        }
+
+        // Render specific step
+        function renderStep(index) {
+            const stepData = stepsHistory[index];
+            
+            // 1. Update Header Info
+            document.getElementById('current-step-display').innerText = index + 1;
+            document.getElementById('step-action-desc').innerText = stepData.step || 'INITIALIZE';
+            
+            // 2. Update Global Variables
+            document.getElementById('val-threshold').innerText = stepData.threshold;
+            document.getElementById('val-pivot').innerText = stepData.pivot;
+            document.getElementById('val-curdoc').innerText = stepData.cur_doc;
+            
+            // 3. Update Top-K List
+            const topKList = document.getElementById('top-k-list');
+            topKList.innerHTML = '';
+            if(stepData.top_k.length === 0) {
+                topKList.innerHTML = '<li style="color: #94a3b8; font-style: italic;">Empty</li>';
+            } else {
+                stepData.top_k.forEach(k => {
+                    const li = document.createElement('li');
+                    li.className = 'top-k-item';
+                    li.innerHTML = `<span>Doc ${k[0]}</span> <span>Score: ${k[1]}</span>`;
+                    topKList.appendChild(li);
+                });
+            }
+
+            // 4. Animate Sorting & Pointers
+            stepData.inverted_index.forEach((termData, sortedIndex) => {
+                const rowElement = document.getElementById(`term-row-${termData.term}`);
+                const pointerElement = document.getElementById(`pointer-${termData.term}`);
+                
+                // Animate row sorting (move up/down)
+                rowElement.style.top = `${sortedIndex * ROW_HEIGHT}px`;
+                
+                // Animate pointer (slide left/right)
+                pointerElement.style.left = `${termData.pointer * POSTING_WIDTH}px`;
+            });
+
+            // Update button states
+            document.getElementById('btn-prev').disabled = index === 0;
+            document.getElementById('btn-next').disabled = index === stepsHistory.length - 1;
+        }
+
+        function prevStep() {
+            if (currentStepIndex > 0) {
+                currentStepIndex--;
+                renderStep(currentStepIndex);
+            }
+        }
+
+        function nextStep() {
+            if (currentStepIndex < stepsHistory.length - 1) {
+                currentStepIndex++;
+                renderStep(currentStepIndex);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevStep();
+            if (e.key === 'ArrowRight') nextStep();
+        });
+
+        // Run on load
+        window.onload = initializeDOM;
+
+    </script>
+</body>
+</html>

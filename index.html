@@ -1,0 +1,210 @@
+---
+layout: default
+title: Home
+---
+
+<div style="
+    display:flex;
+    flex-direction: column;
+    gap:30px;
+">
+
+    <!-- Bio Section -->
+    <div class="screen-adaptive" style="
+    display: flex;
+    gap: 50px;
+    padding: 0 30px;
+    align-items: center;
+    ">  
+        <div style="
+        max-width: 180px;
+        flex-shrink: 0;
+        
+        /* display:flex; */
+        /* flex-direction:column 
+        align-items: center; */
+        /* justify-content:center; */
+        ">
+            <img src="assets/img/jewel.jpg" style="width: 100%; height: auto">
+        </div>
+        
+        
+        <div style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        ">
+            
+            <p>
+                Hi, I'm Fredo Melvern Tanzil. I'm a final-year Computer Science student at University of Indonesia, specializing in Game Development & Computer Graphics. I’m passionate at bridging the gap between technical complexity and creative ideas.
+                
+            </p>
+            <br>
+            <p>
+                Contact me: fredotanzil@gmail.com
+            </p>
+            <br>
+            <div style="
+            display: flex;
+            gap: 20px;
+            ">
+                <a target="_blank" href="mailto:fredotanzil@gmail.com">
+                    <img src="assets/svg/gmail.svg" alt="gmail" width="20" height="20">
+                </a>
+                <a target="_blank" href="https://www.linkedin.com/in/fredo-melvern-tanzil/">
+                    <img src="assets/svg/linkedin.svg" alt="linkedin" width="20" height="20">
+                </a>
+                <a target="_blank" href="https://redorange.itch.io/">
+                    <img src="assets/svg/itch.svg" alt="Itch io" width="20" height="20">
+                </a>
+                <a target="_blank" href="https://github.com/frmeta">
+                    <img src="assets/svg/github.svg" alt="Github" width="20" height="20">
+                </a>
+                <a target="_blank" href="https://www.instagram.com/fredootan/">
+                    <img src="assets/svg/ig.svg" alt="Instagram" width="20" height="20">
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+    <!-- Skill Section -->
+    <div class="fancy-header">
+        <h3>
+            Skills
+        </h3>
+        <ul>
+            <li>Game Development</li>
+            <li>Computer Graphics</li>
+            <li>Programming</li>
+            <li>Software Engineering</li>
+            <li>Project Management</li>
+        </ul>
+    </div>
+
+
+
+
+
+
+    <!-- Featured Projects Section -->
+    <div>
+        <div class="fancy-header">
+            <h3>Projects</h3>
+        </div>
+        <div>
+            <div class="projects">
+                {% for project in site.projects %}
+                    {% if site.data.featured-projects contains project.title %}
+                        
+                        <div class="project">
+                            <div class="project-img-container">
+                                <img class="image-cover" src="/assets/img/{{ project.image }}" alt="{{ project.title }} thumbnail">
+                            </div>
+                            <div class="project-text">
+                                <a href="{{ project.url }}"><p class="event-title">{{ project.title }}</p></a>
+                                <p>{{ project.description }}</p>
+                            </div>
+                        </div>
+                        
+                        
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div style="
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            ">
+                <a href="/projects" class="event-title" style="
+                text-align: center;
+                ">
+                    See All
+                </a>
+            </div>
+            
+
+        </div>
+    </div>
+
+
+    <!-- Experience Section -->
+    <div>
+        <div class="fancy-header">
+            <h3>Experience</h3>
+        </div>
+        <div>
+            <div class="histories">
+                {% for exp in site.data.experiences %}
+                    <div class="history">
+                        <div class="date-range">
+                            <p>{{ exp.date-range }}</p>
+                        </div>
+
+                        <div class="event">
+                            <p class="event-title">{{ exp.title }}</p>
+
+                            <p>{{ exp.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Education Section -->
+    <div>
+        <div class="fancy-header">
+            <h3>Education</h3>
+        </div>
+        <div>
+            <div class="histories">
+                {% for exp in site.data.educations %}
+                    <div class="history">
+                        <div class="date-range">
+                            <p>{{ exp.date-range }}</p>
+                        </div>
+
+                        <div class="event">
+                            <p class="event-title">{{ exp.title }}</p>
+
+                            <p>{{ exp.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+    
+    <!-- Achievement Section -->
+    <div>
+        <div class="fancy-header">
+            <h3>Achievement</h3>
+        </div>
+        <div>
+            <div class="histories">
+                {% for exp in site.data.achievements %}
+                    <div class="history">
+                        <div class="date-range">
+                            <p>{{ exp.date-range }}</p>
+                        </div>
+
+                        <div class="event">
+                            <p class="event-title">{{ exp.title }}</p>
+
+                            <p>{{ exp.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+</div>
+
+
+
+    <!-- Blog Section -->

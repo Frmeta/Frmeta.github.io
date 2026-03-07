@@ -1,0 +1,19 @@
+---
+layout: default
+title: Blog
+---
+<div>
+  <div class="fancy-header">
+    <h3>Blogs</h3>
+</div>
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      {% if post.ext == '.md' or post.ext == '.markdown' %}
+        {{ post.excerpt }}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+</div>
