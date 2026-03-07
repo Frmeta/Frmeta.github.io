@@ -49,18 +49,27 @@ nav {
 }
 
 a {
-  /* // color: rgb(255, 255, 255); */
+  /* color: rgb(255, 255, 255); */
   color: var(--color-text);
   text-decoration: none;
 }
 
 a:hover {
-  // color: rgb(255, 255, 255);
+  /* color: rgb(255, 255, 255); */
   text-decoration: underline;
 }
 
+
+
 p {
-  margin: 0;
+    margin: 0;
+}
+
+.markdown p {
+  margin: 20px 0 0 0;
+}
+.markdown a {
+    color: var(--color-accent);
 }
 
 
@@ -181,11 +190,3 @@ h3::after {
       .event-title {
         color: var(--color-accent);
       }
-
-.gray-when-hover:hover {
-  background-color: var(--color-hover-bg);
-}
-
-.gray-when-hover:not(:hover){
-  text-decoration: none;
-}

@@ -5,9 +5,12 @@ layout: default
     <h1>{{ page.title }}</h1>
     <p class="date-range" style="justify-content:start">{{ page.date | date: "%b %Y" }}</p>
     <br>
-    <br>
     <p>{{ page.description }}</p>
     <br>
+    <hr>
+    <br>
+    <div class="markdown">
     {{ content }}
+    </div>
 </div>
 

@@ -6,7 +6,7 @@ image: robot-shooter.png
 
 ---
 
-Playable build: (https://redorange.itch.io/robot-shooter)[https://redorange.itch.io/robot-shooter]
+Playable build: [https://redorange.itch.io/robot-shooter](https://redorange.itch.io/robot-shooter)
 
 Game made by myself as submission to Ristek Game Development 2023 recruitment.
 

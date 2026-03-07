@@ -6,7 +6,7 @@ image: synthetica.png
 
 ---
 
-Playable build: (https://redorange.itch.io/synthetica)[https://redorange.itch.io/synthetica]
+Playable build: [https://redorange.itch.io/synthetica](https://redorange.itch.io/synthetica)
 
 Made by myself in 1 week. I made procedural level generation, inspired by Splunky game
 

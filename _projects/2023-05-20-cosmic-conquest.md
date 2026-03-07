@@ -7,7 +7,7 @@ image: cosmic-conquest.png
 ---
 
 
-Playable build: (https://redorange.itch.io/cosmicconquest)[https://redorange.itch.io/cosmicconquest]
+Playable build: [https://redorange.itch.io/cosmicconquest](https://redorange.itch.io/cosmicconquest)
 
 A project for Compfest playground leaderboard.
 

@@ -1,13 +1,13 @@
 ---
 layout: project
 title: Awas Nabrak
-description: A traffic sign placement puzzle game designed to teach road safety through logic-based challenges.
+description: A traffic sign placement puzzle game designed to teach road safety through logic-based challenges
 image: awas-nabrak.png
 
 ---
 
 
-Playable build: (https://redorange.itch.io/dsld)[https://redorange.itch.io/dsld]
+Playable build: [https://redorange.itch.io/dsld](https://redorange.itch.io/dsld)
 
 Submission to Gemastik Game Development 2023.
 
