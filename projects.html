@@ -11,7 +11,7 @@ title: About
     <div class="histories">
         {% assign sorted_projects = site.projects | sort: "date" | reverse %}
         {% for project in sorted_projects %}
-            <div class="history">
+            <div class="history" style="margin-bottom: 15px">
                 <div class="date-range">
                     <p>{{ project.date | date: "%b %Y" }}</p>
                 </div>
