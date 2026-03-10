@@ -6,9 +6,11 @@ image: robot-shooter.png
 
 ---
 
+{% include mp4-view.html path="/assets/mp4/robot-shooter.mp4" %}
+
 Playable build: [https://redorange.itch.io/robot-shooter](https://redorange.itch.io/robot-shooter)
 
 Game made by myself as submission to Ristek Game Development 2023 recruitment.
 
-Tools used:
+Tech Stack:
 - Unity C#

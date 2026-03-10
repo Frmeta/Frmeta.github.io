@@ -139,14 +139,15 @@ title: Home
         </div>
         <div>
             <div class="histories">
-                {% for exp in site.data.experiences %}
+                {% assign sorted_exp = site.experiences | sort: "date" | reverse %}
+                {% for exp in sorted_exp %}
                     <div class="history">
                         <div class="date-range">
                             <p>{{ exp.date-range }}</p>
                         </div>
 
                         <div class="event">
-                            <p class="event-title">{{ exp.title }}</p>
+                            <a href="{{ exp.url }}" class="event-title">{{ exp.title }}</a>
 
                             <p>{{ exp.description }}</p>
                         </div>
@@ -165,16 +166,17 @@ title: Home
         </div>
         <div>
             <div class="histories">
-                {% for exp in site.data.educations %}
+                {% assign sorted_edu = site.educations | sort: "date" | reverse %}
+                {% for edu in sorted_edu %}
                     <div class="history">
                         <div class="date-range">
-                            <p>{{ exp.date-range }}</p>
+                            <p>{{ edu.date-range }}</p>
                         </div>
 
                         <div class="event">
-                            <p class="event-title">{{ exp.title }}</p>
+                            <a href="{{ edu.url }}" class="event-title">{{ edu.title }}</a>
 
-                            <p>{{ exp.description }}</p>
+                            <p>{{ edu.description }}</p>
                         </div>
                     </div>
                 {% endfor %}
@@ -189,16 +191,16 @@ title: Home
         </div>
         <div>
             <div class="histories">
-                {% for exp in site.data.achievements %}
+                {% for a in site.data.achievements %}
                     <div class="history">
                         <div class="date-range">
-                            <p>{{ exp.date-range }}</p>
+                            <p>{{ a.date-range }}</p>
                         </div>
 
                         <div class="event">
-                            <p class="event-title">{{ exp.title }}</p>
+                            <a href="{{ a.url }}" class="event-title">{{ a.title }}</a>
 
-                            <p>{{ exp.description }}</p>
+                            <p>{{ a.description }}</p>
                         </div>
                     </div>
                 {% endfor %}

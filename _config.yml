@@ -2,6 +2,13 @@ collections:
   projects:
     output: true
     permalink: /projects/:slug/
+  experiences:
+    output: true
+    permalink: /exp/:slug/
+  educations:
+    output: true
+    permalink: /edu/:slug/
+
 
 domain: frmeta.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
 url: https://frmeta.github.io  # the base hostname and protocol for your site, e.g. http://example.com

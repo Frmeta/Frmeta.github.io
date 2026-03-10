@@ -16,12 +16,15 @@ Team:
 - Kenichi Komala - Artist
 - Ester Gracia - Level Designer
 
+Supervisor:
+- Daya Adianto, S.Kom., M.Kom
+
 My role:
 - game designer
 - game programmer: programmed everything in the game
 - game designer: design some levels
 
-Tools used:
+Tech Stack:
 - Unity C#
 - Postman
 - Google Docs (project management)

@@ -37,6 +37,8 @@ body {
 }
 
 nav {
+  max-width: 700px;
+  
   background-color: var(--color-bg);
   padding: 50px 10px 15px 10px;
   border-bottom: 2px solid var(--color-hover-bg);
@@ -70,6 +72,11 @@ p {
 }
 .markdown a {
     color: var(--color-accent);
+}
+.markdown img {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -133,8 +140,8 @@ h3::after {
   }
 
     .project-img-container {
-      width: 250px;
-      height: auto;
+      width: 270px;
+      height: 220px;
     }
 
     .project-img-container-small {

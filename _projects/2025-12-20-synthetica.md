@@ -10,18 +10,15 @@ Playable build: [https://redorange.itch.io/synthetica](https://redorange.itch.io
 
 Made by myself in 1 week.
 
-Tools used:
+Tech Stack:
 - Godot
 
 
 I made procedural level generation, inspired by Splunky game.
 
-<video controls width="100%">
-    <source src="/assets/mp4/synthetica-mapgen.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+{% include mp4-view.html path="/assets/mp4/synthetica-mapgen.mp4" %}
+{% include mp4-view.html path="/assets/mp4/synthetica-template.mp4" %}
 
-<video controls width="100%">
-    <source src="/assets/mp4/synthetica-template.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+## Certificates
+
+{% include pdf-view.html path="/assets/pdf/sertif-gimersia.pdf" %}
