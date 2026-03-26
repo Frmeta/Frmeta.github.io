@@ -1,6 +1,6 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://frmeta.github.io'
 locale = 'en-us'
-title = 'My New Hugo Project'
+title = 'Fredo`s Portofolio'
 frontmatter = { format = "yaml" }
 
 [caches]
