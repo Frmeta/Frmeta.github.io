@@ -1,0 +1,37 @@
+{{ $folder := .folder | default "" }}
+{{ $srcPrefix := .src_prefix | default "" }}
+{{ $imageClass := .image_class | default "" }}
+
+{{ if and $srcPrefix (not (hasSuffix $srcPrefix "/")) }}
+  {{ $srcPrefix = printf "%s/" $srcPrefix }}
+{{ end }}
+
+{{ $matches := where $.Page.Resources "Name" "like" (printf "^%s" (replace $folder "\\" "/")) }}
+
+<div class="gallery">
+  {{ if gt (len $matches) 0 }}
+    {{ range sort $matches "Name" }}
+      {{ $ext := lower (path.Ext .Name) }}
+      {{ $name := path.Base .Name }}
+      {{ $mediaSrc := printf "%s%s" $srcPrefix $name }}
+
+      {{ if in (slice ".png" ".jpg" ".jpeg" ".gif" ".webp" ".svg") $ext }}
+        <div class="gallery-item">
+          <img src="{{ $mediaSrc }}" alt="{{ $name }}"{{ with $imageClass }} class="{{ . }}"{{ end }}>
+        </div>
+      {{ else if in (slice ".mp4" ".webm" ".ogg") $ext }}
+        <div class="gallery-item">
+          <video controls preload="metadata">
+            <source src="{{ $mediaSrc }}">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    <div style="padding: 1rem; border: 2px dashed red; background: #fff0f0; color: #900;">
+      <strong>Debug: No media found in this folder.</strong><br>
+      Looking for path prefix: <code>{{ $folder }}</code>
+    </div>
+  {{ end }}
+</div>

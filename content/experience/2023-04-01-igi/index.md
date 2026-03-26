@@ -1,0 +1,15 @@
+﻿---
+title: Staff of Indie Game Ignite
+date: 2023-04-01
+description: Compfest
+dateRange: Apr-Oct 2023
+---
+
+{{< img src="compfest-2023.jpg" width="100%" >}}
+
+Key Contributions:
+- Technical Evaluation: Played and critically evaluated all Game Jam submissions, providing standardized ratings to assist in the initial selection process.
+
+- Operational Management: Coordinated the "Pitching Room" logistics, ensuring a seamless transition between teams and maintaining the schedule for judges and participants.
+
+- Validation & Compliance: Managed the verification of participant credentials (IDs/KTP/KTM) and social media requirements to ensure all competing teams met eligibility standards.

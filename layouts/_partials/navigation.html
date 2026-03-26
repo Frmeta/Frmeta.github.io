@@ -1,0 +1,26 @@
+
+
+<nav>
+  <!-- Name -->
+  <a href="/" class="site-title">
+      Fredo Melvern Tanzil
+  </a>
+
+  <!-- Navigation Content -->
+  <div style="
+    display: flex;
+    gap: 20px;
+  ">
+    {{ range .Site.Menus.main }}
+      {{ $isActive := $.IsMenuCurrent "main" . }}
+      {{ if not $isActive }}
+        {{ $isActive = $.HasMenuCurrent "main" . }}
+      {{ end }}
+      <a href="{{ .URL }}"
+      {{ if $isActive }}class="current"{{ end }}>
+        {{ .Name }}
+      </a>
+
+    {{ end }}
+  </div>
+</nav>

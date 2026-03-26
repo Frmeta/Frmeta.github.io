@@ -1,0 +1,24 @@
+baseURL = 'https://example.org/'
+locale = 'en-us'
+title = 'My New Hugo Project'
+frontmatter = { format = "yaml" }
+
+[[menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 1
+
+[[menus.main]]
+    name = "Project"
+    pageRef = "/project"
+    weight = 2
+
+[[menus.main]]
+    name = "Blog"
+    pageRef = "/blog"
+    weight = 3
+
+[[menus.main]]
+    name = "CV"
+    url = "/pdf/cv.pdf"
+    weight = 4

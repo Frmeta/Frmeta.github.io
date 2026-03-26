@@ -1,0 +1,19 @@
+{{ define "main" }}
+
+
+<div>
+    <h1>{{ .Title }}</h1>
+
+    <p>{{ .Params.description }}</p>
+    <br>
+    <p class="date-range" style="justify-content:start">{{ index .Params "dateRange" }}</p>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <div class="markdown">
+        {{ .Content }}
+    </div>
+
+</div>
+{{ end }}

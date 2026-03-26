@@ -1,0 +1,6 @@
+{{ $src := .Get "src" }}
+{{ $width := .Get "width" | default "100%" }}
+
+<iframe src="{{ $src }}" width="{{ $width }}" height="600px">
+  <p>Download the PDF <a href="{{ $src }}">here</a>.</p>
+</iframe>

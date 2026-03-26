@@ -1,0 +1,5 @@
+{{- $dest := .Destination | safeURL -}}
+{{- $isProject := eq .Page.Section "project" -}}
+{{- $isExternal := or (hasPrefix .Destination "http://") (hasPrefix .Destination "https://") -}}
+
+<a href="{{ $dest }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if and $isProject $isExternal }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>

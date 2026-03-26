@@ -1,0 +1,65 @@
+---
+date : '2022-06-01'
+title : 'Bachelor of Computer Science'
+description : University of Indonesia
+dateRange : 2022-now
+---
+
+
+
+## **Mandatory Courses**
+
+Core Programming & Software Engineering
+
+* **Foundation of Programming 1 & 2:** Mastery of fundamental logic, syntax, and object-oriented programming (OOP).
+* **Data Structures & Algorithms:** Implementation of efficient data storage and retrieval methods to optimize performance.
+* **Advanced Programming:** Deep dive into complex software patterns, concurrency, and robust application architecture.
+* **Platform-Based Development:** Building applications for specific environments, focusing on web and mobile integration.
+* **Software Engineering:** Study of the full SDLC, requirements engineering, and professional development methodologies.
+* **Software Project (Startup):** A capstone-style course focused on building and launching a scalable software product in a team environment.
+* **Database:** Design and management of relational data systems and query optimization.
+* **Artificial Intelligence & Data Science Foundations:** Introduction to heuristic search, logic-based systems, and data-driven decision-making.
+
+Systems & Infrastructure
+
+* **Computer Organization & Digital Systems:** Low-level study of hardware logic, circuitry, and CPU architecture.
+* **Operating Systems:** Understanding kernel management, memory allocation, and hardware abstraction.
+* **Computer Networks:** The study of data communication protocols and network architecture.
+
+Mathematics & Theoretical Foundations
+
+* **Calculus 1 & 2:** Advanced continuous mathematics for physics and optimization.
+* **Linear Algebra:** The foundation of 3D graphics, transformations, and machine learning matrices.
+* **Discrete Mathematics 1 & 2:** Logic, set theory, and graph theory—the building blocks of computer science.
+* **Probability & Statistics:** Modeling uncertainty and analyzing data distributions for AI and game balancing.
+* **Numerical Analysis:** Algorithms for approximating solutions to mathematical problems that cannot be solved analytically.
+* **Theory of Computation & Automata:** The abstract study of what can be computed and the formal languages used to do so.
+
+Research & Professionalism
+
+* **Research Methodology & Scientific Writing:** Techniques for academic inquiry and documenting technical findings.
+* **Computer & Society:** Analyzing the ethical, legal, and social implications of technology.
+* **Internship (Kerja Praktik):** Professional industry experience applying classroom knowledge to real-world production.
+* **Group Capstone Project (Tugas Akhir/Skripsi):** A collaborative final-year research and development project.
+
+## **Elective Course**
+
+Game Technology & Visual Computing
+
+* **Game Development:** Comprehensive study of game design, engine mechanics, and interactive systems.
+* **Computer Graphics:** Exploration of rendering pipelines, shaders, and the mathematical foundations of 2D/3D visuals.
+* **Computational Geometry:** Algorithmic solutions for geometric problems, essential for collision detection and spatial partitioning.
+* **Computer Vision:** Implementing algorithms that allow computers to "see" and interpret visual data from the real world.
+
+Artificial Intelligence & Data Science
+
+* **Deep Learning:** Advanced study of neural networks, focusing on training architectures for complex pattern recognition.
+* **Information Retrieval (Web Search):** The science of indexing, ranking, and retrieving relevant information from large-scale datasets.
+* **Robotica:** Combining hardware awareness with software logic to create autonomous or semi-autonomous systems.
+
+Systems & Infrastructure
+
+* **Cloud Computing:** Designing and deploying scalable applications using virtualized infrastructure and microservices.
+* **Cryptography & Information Security:** Protecting data integrity and privacy through mathematical encryption and security protocols.
+
+

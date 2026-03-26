@@ -1,0 +1,81 @@
+{{ $folder := .Get "folder" | default "" }}
+{{ $srcPrefix := .Get "src_prefix" | default "" }}
+{{ $imageClass := .Get "image_class" | default "" }}
+
+{{ $folder = replace $folder "\\" "/" }}
+{{ if and $folder (not (hasSuffix $folder "/")) }}
+  {{ $folder = printf "%s/" $folder }}
+{{ end }}
+{{ $folder = strings.TrimPrefix "/" $folder }}
+
+{{ if and $srcPrefix (not (hasSuffix $srcPrefix "/")) }}
+  {{ $srcPrefix = printf "%s/" $srcPrefix }}
+{{ end }}
+
+{{ $resourceMatches := where .Page.Resources "Name" "like" (printf "^%s" $folder) }}
+{{ $fileMatches := slice }}
+
+{{ if and (eq (len $resourceMatches) 0) .Page.File }}
+  {{ $diskFolder := printf "content/%s%s" .Page.File.Dir $folder }}
+  {{ if fileExists $diskFolder }}
+    {{ range readDir $diskFolder }}
+      {{ if not .IsDir }}
+        {{ $fileMatches = $fileMatches | append .Name }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $count := len $resourceMatches }}
+{{ if eq $count 0 }}
+  {{ $count = len $fileMatches }}
+{{ end }}
+
+<div class="gallery{{ if eq $count 3 }} gallery-row-fill{{ end }}">
+  {{ if gt $count 0 }}
+    {{ if gt (len $resourceMatches) 0 }}
+      {{ range sort $resourceMatches "Name" }}
+        {{ $ext := lower (path.Ext .Name) }}
+        {{ $name := path.Base .Name }}
+        {{ $mediaSrc := printf "%s%s" $srcPrefix $name }}
+
+        {{ if in (slice ".png" ".jpg" ".jpeg" ".gif" ".webp" ".svg") $ext }}
+          <div class="gallery-item">
+            <img src="{{ $mediaSrc }}" alt="{{ $name }}"{{ with $imageClass }} class="{{ . }}"{{ end }}>
+          </div>
+        {{ else if in (slice ".mp4" ".webm" ".ogg") $ext }}
+          <div class="gallery-item">
+            <video controls preload="metadata">
+              <source src="{{ $mediaSrc }}">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        {{ end }}
+      {{ end }}
+    {{ else }}
+      {{ range sort $fileMatches }}
+        {{ $ext := lower (path.Ext .) }}
+        {{ $name := path.Base . }}
+        {{ $mediaSrc := printf "%s%s" $srcPrefix $name }}
+
+        {{ if in (slice ".png" ".jpg" ".jpeg" ".gif" ".webp" ".svg") $ext }}
+          <div class="gallery-item">
+            <img src="{{ $mediaSrc }}" alt="{{ $name }}"{{ with $imageClass }} class="{{ . }}"{{ end }}>
+          </div>
+        {{ else if in (slice ".mp4" ".webm" ".ogg") $ext }}
+          <div class="gallery-item">
+            <video controls preload="metadata">
+              <source src="{{ $mediaSrc }}">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    <div style="padding: 1rem; border: 2px dashed red; background: #fff0f0; color: #900;">
+      <strong>Debug: No media found in this folder.</strong><br>
+      Looking for path prefix: <code>{{ $folder }}</code>
+    </div>
+  {{ end }}
+</div>

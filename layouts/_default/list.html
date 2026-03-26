@@ -1,0 +1,23 @@
+{{ define "main" }}
+
+<div>
+    <div class="fancy-header">
+        <h3>{{ .Title }}</h3>
+    </div>
+    <div class="histories">
+        {{ range sort .Pages "Date" "desc" }}
+            <div class="history" style="margin-bottom: 15px">
+                <div class="date-range">
+                    <p>{{ .Date.Format "Jan 2006" }}</p>
+                </div>
+
+                <div class="event">
+                    <a href="{{ .RelPermalink }}" class="event-title">{{ .Title }}</a>
+                    <p>{{ .Params.description }}</p>
+                </div>
+            </div>
+        {{ end }}
+    </div>
+</div>
+
+{{ end }}

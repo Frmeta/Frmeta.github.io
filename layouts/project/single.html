@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div>
+    <h1>{{ .Title }}</h1>
+    <p class="date-range" style="justify-content:start">{{ .Date.Format "Jan 2006" }}</p>
+    <br>
+    <div style="
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    ">
+        <img width=80% src="{{ .Params.image }}" alt="{{ .Title }} thumbnail">
+    </div>
+    <br>
+    <p>{{ .Params.description }}</p>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <div class="markdown">
+    {{ .Content }}
+    </div>
+</div>
+
+{{ end }}

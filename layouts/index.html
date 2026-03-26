@@ -1,0 +1,214 @@
+{{ define "main" }}
+
+<div style="
+    display:flex;
+    flex-direction: column;
+    gap:30px;
+">
+
+    <!-- Bio Section -->
+    <div class="screen-adaptive" style="
+    display: flex;
+    gap: 50px;
+    padding: 0 30px;
+    align-items: center;
+    ">  
+        <div style="
+        max-width: 180px;
+        flex-shrink: 0;
+        
+        /* display:flex; */
+        /* flex-direction:column 
+        align-items: center; */
+        /* justify-content:center; */
+        ">
+            <img src="/img/jewel.jpg" style="width: 100%; height: auto">
+        </div>
+        
+        
+        <div style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        ">
+            
+            <p>
+                Hi, I'm Fredo Melvern Tanzil. I'm a final-year Computer Science student at University of Indonesia, specializing in Game Development & Computer Graphics. I’m passionate at bridging the gap between technical complexity and creative ideas.
+                
+            </p>
+            <br>
+            <p>
+                Contact me: fredotanzil@gmail.com
+            </p>
+            <br>
+            <div style="
+            display: flex;
+            gap: 20px;
+            ">
+                <a target="_blank" href="mailto:fredotanzil@gmail.com">
+                    <img src="/svg/gmail.svg" alt="gmail" width="20" height="20">
+                </a>
+                <a target="_blank" href="https://www.linkedin.com/in/fredo-melvern-tanzil/">
+                    <img src="/svg/linkedin.svg" alt="linkedin" width="20" height="20">
+                </a>
+                <a target="_blank" href="https://redorange.itch.io/">
+                    <img src="/svg/itch.svg" alt="Itch io" width="20" height="20">
+                </a>
+                <a target="_blank" href="https://github.com/frmeta">
+                    <img src="/svg/github.svg" alt="Github" width="20" height="20">
+                </a>
+                <a target="_blank" href="https://www.instagram.com/fredootan/">
+                    <img src="/svg/ig.svg" alt="Instagram" width="20" height="20">
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+    <!-- Skill Section -->
+    <div>
+        <div class="fancy-header">
+            <h3>
+                Skills
+            </h3>
+        </div>
+        <ul style="text-align: center; list-style-type: none;">
+            <li>Game Development</li>
+            <li>Computer Graphics</li>
+            <li>Programming</li>
+            <li>Software Engineering</li>
+            <li>Project Management</li>
+        </ul>
+    </div>
+
+
+
+
+
+
+    <!-- Featured Projects Section -->
+    <div>
+        <div class="fancy-header">
+            <h3>Projects</h3>
+        </div>
+        <div>
+            <div class="projects">
+                {{ $allProjects := where .Site.RegularPages "Section" "project" }}
+                {{ $featuredProjects := index .Site.Data "featured-projects" "projects" }}
+
+                {{ range $featuredTitle := $featuredProjects }}
+                    {{ range first 1 (where $allProjects "Title" $featuredTitle) }}
+                        {{ if and (isset .Params "image") (isset .Params "description") }}
+                            {{ $imageSrc := .Params.image }}
+                            {{ $imageSrc = printf "%s%s" .RelPermalink $imageSrc }}
+                        <div class="project">
+                            <div class="project-img-container">
+                                <img class="image-cover" src="{{ $imageSrc }}" alt="{{ .Title }} thumbnail">
+                            </div>
+                            <div class="project-text">
+                                <a href="{{ .Permalink }}"><p class="event-title">{{ .Title }}</p></a>
+                                <p>{{ .Params.description }}</p>
+                            </div>
+                        </div>
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+            </div>
+
+            <div style="
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            ">
+                <a href="/projects" class="event-title" style="
+                text-align: center;
+                ">
+                    See All
+                </a>
+            </div>
+            
+
+        </div>
+    </div>
+
+
+    <!-- Experience Section -->
+    <div>
+        <div class="fancy-header">
+            <h3>Experience</h3>
+        </div>
+        <div>
+            <div class="histories">
+                {{ range (where .Site.RegularPages "Section" "experience") }}
+                    <div class="history">
+                        <div class="date-range">
+                            <p>{{ .Params.dateRange }}</p>
+                        </div>
+
+                        <div class="event">
+                            <a href="{{ .Permalink }}" class="event-title">{{ .Title }}</a>
+
+                            <p>{{ .Params.description }}</p>
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Education Section -->
+    <div>
+        <div class="fancy-header">
+            <h3>Education</h3>
+        </div>
+        <div>
+            <div class="histories">
+                {{ range (where .Site.RegularPages "Section" "education") }}
+                    <div class="history">
+                        <div class="date-range">
+                            <p>{{ .Params.dateRange }}</p>
+                        </div>
+
+                        <div class="event">
+                            <a href="{{ .Permalink }}" class="event-title">{{ .Title }}</a>
+
+                            <p>{{ .Params.description }}</p>
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Achievement Section -->
+    <div>
+        <div class="fancy-header">
+            <h3>Achievement</h3>
+        </div>
+        <div>
+            <div class="histories">
+                {{ range .Site.Data.achievements.items }}
+                    <div class="history">
+                        <div class="date-range">
+                            <p>{{ .dateRange }}</p>
+                        </div>
+
+                        <div class="event">
+                            <a href="{{ .url }}" class="event-title">{{ .title }}</a>
+
+                            <p>{{ .description }}</p>
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{ end }}
