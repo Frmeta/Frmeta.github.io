@@ -20,7 +20,6 @@ Key Contributions:
 Tech Stack:
 - Godot
 
-Ristek Company Profile 2024
 
 
 
