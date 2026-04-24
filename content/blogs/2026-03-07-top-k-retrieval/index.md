@@ -27,7 +27,6 @@ This design lets me scale and customize visualizations for different queries and
 
 
 
-
 References:
 - Efficient Query Evaluation using a Two-Level Retrieval
 Process”, by Andrei Z. Broder, D. Carmel, M. Herscovici, A. Soffer, J. Zien

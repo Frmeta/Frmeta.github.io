@@ -330,3 +330,7 @@ h3::after {
     grid-template-columns: 1fr;
   }
 }
+
+ul {
+  padding-inline-start: 0px;
+}

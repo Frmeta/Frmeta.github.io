@@ -19,7 +19,7 @@ frontmatter = { format = "yaml" }
 
 [[menus.main]]
     name = "Blog"
-    pageRef = "/blog"
+    pageRef = "/blogs"
     weight = 3
 
 [[menus.main]]
