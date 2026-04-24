@@ -1,7 +1,7 @@
 ---
 title: Making Search Engine from Scratch
 date: 2026-03-20
-description: Information Retrieval
+# description: Information Retrieval
 ---
 
 

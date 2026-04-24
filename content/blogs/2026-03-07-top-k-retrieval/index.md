@@ -1,7 +1,7 @@
 ---
 title: WAND Opearator Top K Retrieval Visualization
 date: 2026-03-07
-description: Information Retrieval
+# description: Information Retrieval
 ---
 
 {{< mp4 src="demo.mp4" >}}
