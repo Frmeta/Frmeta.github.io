@@ -101,7 +101,7 @@
 
                 {{ range $featuredTitle := $featuredProjects }}
                     {{ range first 1 (where $allProjects "Title" $featuredTitle) }}
-                        {{ if and (isset .Params "image") (isset .Params "description") }}
+                        {{ if and (not (hasPrefix .File.Path "project/hidden/")) (isset .Params "image") (isset .Params "description") }}
                             {{ $imageSrc := .Params.image }}
                             {{ $imageSrc = printf "%s%s" .RelPermalink $imageSrc }}
                         <div class="project">

@@ -5,27 +5,29 @@
     </div>
     <div class="histories">
         {{ range sort (where .Site.RegularPages "Section" "project") "Date" "desc" }}
-            {{ $imageSrc := .Params.image }}
-            {{ if not (hasPrefix $imageSrc "/") }}
-                {{ with .Resources.GetMatch $imageSrc }}
-                    {{ $imageSrc = .RelPermalink }}
-                {{ else }}
-                    {{ $imageSrc = printf "%s../%s" .RelPermalink $imageSrc }}
+            {{ if not (hasPrefix .File.Path "project/hidden/") }}
+                {{ $imageSrc := .Params.image }}
+                {{ if not (hasPrefix $imageSrc "/") }}
+                    {{ with .Resources.GetMatch $imageSrc }}
+                        {{ $imageSrc = .RelPermalink }}
+                    {{ else }}
+                        {{ $imageSrc = printf "%s../%s" .RelPermalink $imageSrc }}
+                    {{ end }}
                 {{ end }}
-            {{ end }}
-            <div class="history" style="margin-bottom: 15px">
-                <div class="date-range">
-                    <p>{{ .Date.Format "Jan 2006" }}</p>
-                </div>
-                <div class="project-img-container-small">
-                    <img class="image-cover" src="{{ $imageSrc }}" alt="{{ .Title }} thumbnail">
-                </div>
-                <div class="event">
-                    <a href="{{ .RelPermalink }}" class="event-title">{{ .Title }}</a>
+                <div class="history" style="margin-bottom: 15px">
+                    <div class="date-range">
+                        <p>{{ .Date.Format "Jan 2006" }}</p>
+                    </div>
+                    <div class="project-img-container-small">
+                        <img class="image-cover" src="{{ $imageSrc }}" alt="{{ .Title }} thumbnail">
+                    </div>
+                    <div class="event">
+                        <a href="{{ .RelPermalink }}" class="event-title">{{ .Title }}</a>
 
-                    <p>{{ .Params.description }}</p>
+                        <p>{{ .Params.description }}</p>
+                    </div>
                 </div>
-            </div>
+            {{ end }}
         {{ end }}
     </div>
 </div>
