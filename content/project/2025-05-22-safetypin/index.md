@@ -6,6 +6,9 @@ image: safetypin.png
 date: 2025-05-22
 ---
 
+Source code: https://github.com/orgs/safetypin-official/repositories
+Landing page: https://aquamarine-salmiakki-78defd.netlify.app/
+
 A project for Software Engineering Project course 2025.
 
 Team size: 6
