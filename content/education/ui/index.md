@@ -6,6 +6,14 @@ dateRange : 2022-now
 ---
 
 
+GPA 3.93/4.00 (Summa Cumlaude)
+
+Transcript without score:
+{{< pdf src="transcript-certificate.pdf" >}}
+
+Transcript with score:
+{{< pdf src="transcript-sisurat.pdf" >}}
+
 
 ## **Mandatory Courses**
 
